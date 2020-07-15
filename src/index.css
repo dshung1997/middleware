@@ -20,4 +20,5 @@ code {
 div.block {
   border: 3px solid white;
   margin: 15px;
+  min-height: 200px;
 }

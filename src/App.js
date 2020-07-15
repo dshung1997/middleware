@@ -8,9 +8,11 @@ function App() {
   return (
     <div className="App">
       <div className="block">
-        {users.map((u, i) => (
-          <h3 key={i}>{u.name}</h3>
-        ))}
+        {users.length !== 0 ? (
+          users.map((u, i) => <h3 key={i}>{u.name}</h3>)
+        ) : (
+          <h3>None...</h3>
+        )}
       </div>
     </div>
   );
