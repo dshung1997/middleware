@@ -1,21 +1,19 @@
 import { Types } from "./action";
 
 const customMiddleWare = (store) => (next) => (action) => {
-  if (action.type === Types.FETCH_USERS) {
+  if (action.promise && typeof action.promise.then === "function") {
     next({ type: Types.FETCH_USERS });
 
     action.promise
       .then((data) => {
-        setTimeout(() => {
-          next({
-            type: Types.FETCH_USERS_SUCCESS,
-            value: data,
-          });
-        }, 3000);
+        next({
+          type: action.type + "_SUCCESS",
+          value: data,
+        });
       })
       .catch((e) => {
         next({
-          type: Types.FETCH_USERS_FAILURE,
+          type: action.type + "_FAILURE",
           value: e,
         });
       });

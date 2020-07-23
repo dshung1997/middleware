@@ -1,5 +1,6 @@
 import { get } from "./utils";
 
+// TODO: put Types in another place
 const Types = {
   FETCH_USERS: "FETCH_USERS",
   FETCH_USERS_SUCCESS: "FETCH_USERS_SUCCESS",
