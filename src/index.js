@@ -5,11 +5,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { users as usersReducer } from "./reducer";
+import { combinedReducers } from "./reducers";
 import { customMiddleWare } from "./middleware";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 // TODO: add config to use Redux devtools
-let store = createStore(usersReducer, applyMiddleware(customMiddleWare));
+let store = createStore(
+  combinedReducers,
+  composeWithDevTools(applyMiddleware(customMiddleWare))
+);
 
 ReactDOM.render(
   <React.StrictMode>

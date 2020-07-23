@@ -1,6 +1,5 @@
-import { Types } from "./action";
+import { Types } from "./type";
 
-// TODO: use combineReducer
 const users = (state = [], action) => {
   if (action.type === Types.FETCH_USERS_SUCCESS) {
     return [...state, ...action.value];
