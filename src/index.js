@@ -5,11 +5,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { users as usersReducer } from "./reducer";
+import { combinedReducers } from "./reducers";
 import { customMiddleWare } from "./middleware";
-import { fetchUsers } from "./action";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-let store = createStore(usersReducer, applyMiddleware(customMiddleWare));
+// TODO: add config to use Redux devtools
+let store = createStore(
+  combinedReducers,
+  composeWithDevTools(applyMiddleware(customMiddleWare))
+);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,8 +23,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-store.dispatch(fetchUsers());
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
